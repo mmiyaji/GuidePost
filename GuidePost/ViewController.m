@@ -9,10 +9,6 @@
 #import "ViewController.h"
 #import "MyAnnotation.h"
 
-static const CGRect kNavigationBarFrame = {
-    .origin = { .x = 0.f, .y = 0.f }, .size = { .width = 320.f, .height = 44.f }
-};
-
 @interface ViewController ()
 @property (nonatomic, strong) MyAnnotation *myAnnotation;
 @end
@@ -29,15 +25,8 @@ static const CGRect kNavigationBarFrame = {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    searchBar = [[UISearchBar alloc] initWithFrame:kNavigationBarFrame];
     searchBar.delegate = self;
-//    [self.view addSubview:searchBar];
-//    searchBar.hidden = YES;
-//    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0,kNavigationBarFrame.size.height,self.view.frame.size.width,self.view.frame.size.height - kNavigationBarFrame.size.height)];
     mapView.showsUserLocation = YES;
-//    [self.view addSubview:self.mapView];
-    
     [self startReceiveLocation];
 }
 
@@ -47,11 +36,7 @@ static const CGRect kNavigationBarFrame = {
         self.myAnnotation = [[MyAnnotation alloc] initWithCoordinate:coord];
         [self.mapView addAnnotation:self.myAnnotation];
     }
-    
-    // (*・∀・).｡oO(set a coordinate of the specific location)
     self.myAnnotation.coordinate = coord;
-    
-    // (*・∀・).｡oO(Specify the position of the center of the map and the display area)
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 200.0f, 200.0f);
     [self.mapView setRegion:region animated:YES];
 }
@@ -62,24 +47,13 @@ static const CGRect kNavigationBarFrame = {
         self.locationManager = [[CLLocationManager alloc] init];
     }
     self.locationManager.delegate = self;
-    
-    // (*・∀・).｡oO(start receiving the current Location)
     [self.locationManager startUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    // (*・∀・).｡oO(get the current location)
     self.currentLocation = newLocation;
-    
-    // (*・∀・).｡oO(move a pin to the currentLocation)
     [self movePinLocationTo:self.currentLocation.coordinate];
-    
-    // (*・∀・).｡oO(stop receiving the current Location)
     [self.locationManager stopUpdatingLocation];
-    //緯度・経度を出力
-    NSLog(@"didUpdateToLocation latitude=%f, longitude=%f",
-          [newLocation coordinate].latitude,
-          [newLocation coordinate].longitude);
     [self reverseGeocodeLocation:newLocation];
 }
 
@@ -92,11 +66,9 @@ static const CGRect kNavigationBarFrame = {
 }
 
 #pragma mark --  search location by location name --
-- (void) searchBarSearchButtonClicked: (UISearchBar *) searchBar {
-    [searchBar resignFirstResponder];
-    
-    // (*・∀・).｡oO(show error message if there is only blank)
-    if ([[searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]) {
+- (void) searchBarSearchButtonClicked: (UISearchBar *) _searchBar {
+    [_searchBar resignFirstResponder];
+    if ([[_searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]) {
         [[[UIAlertView alloc] initWithTitle:@"エラー"
                                     message:@"住所を入力してください。"
                                    delegate:nil
@@ -128,6 +100,9 @@ static const CGRect kNavigationBarFrame = {
 }
 - (void)reverseGeocodeLocation:(CLLocation *)location
 {
+    NSLog(@"didUpdateToLocation latitude=%f, longitude=%f",
+          [location coordinate].latitude,
+          [location coordinate].longitude);
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:
      ^(NSArray* placemarks, NSError* error) {
@@ -156,6 +131,7 @@ static const CGRect kNavigationBarFrame = {
     }
     CLPlacemark* placemark;
     for(placemark in placemarks) {
+        NSLog(@"\n");
         NSLog(@"name : %@", placemark.name);
         NSLog(@"ocean : %@", placemark.ocean);
         NSLog(@"postalCode : %@", placemark.postalCode);
@@ -173,9 +149,6 @@ static const CGRect kNavigationBarFrame = {
         NSLog(@"addressDictionary State : %@", [placemark.addressDictionary objectForKey:@"State"]);
         NSLog(@"addressDictionary SubLocality : %@", [placemark.addressDictionary objectForKey:@"SubLocality"]);
 //        NSString* name; name = ABCreateStringWithAddressDictionary(placemark.addressDictionary, YES); NSLog(@"%@", name);
-        //             NSString* name;
-        //             name = ABCreateStringWithAddressDictionary(placemark.addressDictionary, YES);
-        //             NSLog(@"%@", name);
     }
 }
 @end
