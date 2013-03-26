@@ -19,6 +19,9 @@
 		B129819617020CE600181572 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B129819517020CE600181572 /* ViewController.m */; };
 		B129819917020CE600181572 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B129819717020CE600181572 /* ViewController_iPhone.xib */; };
 		B129819C17020CE600181572 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B129819A17020CE600181572 /* ViewController_iPad.xib */; };
+		B12981A617020D1500181572 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12981A417020D0800181572 /* CoreLocation.framework */; };
+		B12981A717020D1500181572 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12981A217020D0200181572 /* MapKit.framework */; };
+		B12981AA17020DE400181572 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B12981A917020DE400181572 /* MyAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,10 @@
 		B129819517020CE600181572 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B129819817020CE600181572 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		B129819B17020CE600181572 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		B12981A217020D0200181572 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B12981A417020D0800181572 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B12981A817020DE400181572 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
+		B12981A917020DE400181572 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B12981A617020D1500181572 /* CoreLocation.framework in Frameworks */,
+				B12981A717020D1500181572 /* MapKit.framework in Frameworks */,
 				B129817D17020CE600181572 /* UIKit.framework in Frameworks */,
 				B129817F17020CE600181572 /* Foundation.framework in Frameworks */,
 				B129818117020CE600181572 /* CoreGraphics.framework in Frameworks */,
@@ -75,6 +84,8 @@
 		B129817B17020CE600181572 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B12981A417020D0800181572 /* CoreLocation.framework */,
+				B12981A217020D0200181572 /* MapKit.framework */,
 				B129817C17020CE600181572 /* UIKit.framework */,
 				B129817E17020CE600181572 /* Foundation.framework */,
 				B129818017020CE600181572 /* CoreGraphics.framework */,
@@ -87,6 +98,8 @@
 			children = (
 				B129818B17020CE600181572 /* AppDelegate.h */,
 				B129818C17020CE600181572 /* AppDelegate.m */,
+				B12981A817020DE400181572 /* MyAnnotation.h */,
+				B12981A917020DE400181572 /* MyAnnotation.m */,
 				B129819417020CE600181572 /* ViewController.h */,
 				B129819517020CE600181572 /* ViewController.m */,
 				B129819717020CE600181572 /* ViewController_iPhone.xib */,
@@ -180,6 +193,7 @@
 				B129818917020CE600181572 /* main.m in Sources */,
 				B129818D17020CE600181572 /* AppDelegate.m in Sources */,
 				B129819617020CE600181572 /* ViewController.m in Sources */,
+				B12981AA17020DE400181572 /* MyAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +324,7 @@
 				B12981A117020CE600181572 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
